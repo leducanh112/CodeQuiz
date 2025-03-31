@@ -4,6 +4,7 @@ import { getTopic } from "../../services/topicService";
 import { getListQuestion } from "../../services/questionService";
 import { getCookie } from "../../helpers/cookie";
 import { createAnswer } from "../../services/quizService";
+import "./Quizz.scss";
 
 function Quiz() {
   const params = useParams();
@@ -56,31 +57,37 @@ function Quiz() {
   // console.log("dataQuestion", dataQuestions);
   return (
     <>
-      <h2>Bài Quiz chủ đề: {dataTopic && <>{dataTopic.name}</>}</h2>
-      <div className="form-quiz">
-        <form onSubmit={handleSubmit}>
-          {dataQuestions.map((item, index) => (
-            <div className="form-quiz__item" key={item.id}>
-              <p>
-                Câu {index + 1}: {item.questions}
-              </p>
-              {item.answers.map((itemAns, indexAns) => (
-                <div className="form-quiz__answer" key={indexAns}>
-                  <input
-                    type="radio"
-                    name={item.id}
-                    value={indexAns}
-                    id={`quiz-${item.id}-${indexAns}`}
-                  ></input>
-                  <label htmlFor={`quiz-${item.id}-${indexAns}`}>
-                    {itemAns}
-                  </label>
-                </div>
-              ))}
-            </div>
-          ))}
-          <button type="Submit">Submit</button>
-        </form>
+      <div className="quiz-page">
+        <h2 className="quiz-page__heading">
+          Bài Quiz chủ đề: {dataTopic && <>{dataTopic.name}</>}
+        </h2>
+        <div className="form-quiz">
+          <form onSubmit={handleSubmit}>
+            {dataQuestions.map((item, index) => (
+              <div className="form-quiz__item" key={item.id}>
+                <p className="form-quiz__question">
+                  Câu {index + 1}: {item.questions}
+                </p>
+                {item.answers.map((itemAns, indexAns) => (
+                  <div className="form-quiz__answer" key={indexAns}>
+                    <input
+                      type="radio"
+                      name={item.id}
+                      value={indexAns}
+                      id={`quiz-${item.id}-${indexAns}`}
+                    ></input>
+                    <label htmlFor={`quiz-${item.id}-${indexAns}`}>
+                      {itemAns}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            ))}
+            <button type="Submit" className="form-quiz__submit-btn">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

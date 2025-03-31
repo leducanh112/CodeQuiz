@@ -3,17 +3,21 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Answers from "../pages/Answers";
 import Quiz from "../pages/Quiz";
-import Register from "../pages/Register";
 import Result from "../pages/Result";
 import Topic from "../pages/Topic";
 import PrivateRoutes from "../components/PrivateRoutes";
 import Logout from "../pages/Logout";
+import CreateTopic from "../pages/CreateTopic";
 
 export const routes = [
   {
     path: "/",
     element: <LayoutDefault></LayoutDefault>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/home",
         element: <Home></Home>,
@@ -22,10 +26,7 @@ export const routes = [
         path: "/login",
         element: <Login></Login>,
       },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
+
       {
         path: "/logout",
         element: <Logout></Logout>,
@@ -46,8 +47,12 @@ export const routes = [
             element: <Result></Result>,
           },
           {
-            path: "Topic",
+            path: "topic",
             element: <Topic></Topic>,
+          },
+          {
+            path: "create-topic/:id",
+            element: <CreateTopic />,
           },
         ],
       },

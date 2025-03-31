@@ -1,24 +1,26 @@
 import "./LayoutDefault.scss";
-import { getCookie } from "../../helpers/cookie";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import logo from "../../logo.png";
 function LayoutDefault() {
-  const token = getCookie("token");
   const isLogin = useSelector((state) => state.loginReducer);
   console.log(isLogin);
-  console.log(token);
 
   return (
     <>
       <div className="layout-default">
         <header className="layout-default__header">
-          <div className="layout-default__logo">Logo</div>
+          <div className="layout-default__logo">
+            <a href="/home">
+              <img src={logo}></img>
+            </a>
+          </div>
           <div className="layout-default__menu">
             <ul>
               <li>
                 <NavLink to="/home">Home</NavLink>
               </li>
-              {token && (
+              {isLogin && (
                 <>
                   <li>
                     <NavLink to="/topic">Topic</NavLink>
@@ -31,14 +33,13 @@ function LayoutDefault() {
             </ul>
           </div>
           <div className="layout-default__account">
-            {token ? (
+            {isLogin ? (
               <>
                 <NavLink to="logout">Logout</NavLink>
               </>
             ) : (
               <>
-                <NavLink to="login">Login</NavLink>
-                <NavLink to="register">Register</NavLink>
+                <NavLink to="login">Login/Register</NavLink>
               </>
             )}
           </div>

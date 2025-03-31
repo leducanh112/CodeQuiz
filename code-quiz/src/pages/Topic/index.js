@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getListTopic } from "../../services/topicService";
+import { createTopic, getListTopic } from "../../services/topicService";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "./Topic.scss";
 
 function Topic() {
   const [topics, setTopics] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -13,31 +17,63 @@ function Topic() {
     fetchApi();
   }, []);
 
+  const handleCreateTopic = () => {
+    Swal.fire({
+      title: "Nhập Tên Chủ Đề",
+      input: "text",
+      inputPlaceholder: "Nhập tên chủ đề...",
+      showCancelButton: true,
+      confirmButtonText: "Tạo",
+      cancelButtonText: "Hủy",
+      inputValidator: (value) => {
+        if (!value) {
+          return "Vui lòng nhập tên chủ đề!";
+        }
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await createTopic({ name: result.value });
+        if (response) {
+          navigate(`/create-topic/${response.id}`);
+        } else {
+          alert("Fail!");
+        }
+      }
+    });
+  };
   return (
     <>
-      <h2>Danh sách chủ đề</h2>
-      {topics.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Tên chủ đề</th>
-              <th>ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {topics.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>
-                  <Link to={"/quiz/" + item.id}>Làm bài</Link>
-                </td>
+      <div className="topic-list">
+        <h2 className="topic-list__heading">Danh sách chủ đề</h2>
+        {topics.length > 0 && (
+          <table className="topic-list__table">
+            <thead>
+              <tr>
+                <th className="topic-list__table-header">ID</th>
+                <th className="topic-list__table-header">Tên chủ đề</th>
+                <th className="topic-list__table-header">Chi Tiết</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody>
+              {topics.map((item) => (
+                <tr key={item.id} className="topic-list__table-row">
+                  <td className="topic-list__table-cell">{item.id}</td>
+                  <td className="topic-list__table-cell">{item.name}</td>
+                  <td className="topic-list__table-cell">
+                    <Link to={"/quiz/" + item.id}>Làm bài</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        <button
+          className="topic-list__create-button"
+          onClick={handleCreateTopic}
+        >
+          Tạo topic mới
+        </button>
+      </div>
     </>
   );
 }

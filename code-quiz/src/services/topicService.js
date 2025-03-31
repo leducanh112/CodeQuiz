@@ -9,3 +9,8 @@ export const getTopic = async (id) => {
   const result = await get(`topics/${id}`);
   return result;
 };
+
+export const createTopic = async (options) => {
+  const result = await post(`topics`, options);
+  return result;
+};

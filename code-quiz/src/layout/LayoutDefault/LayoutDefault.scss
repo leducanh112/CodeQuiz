@@ -1,63 +1,67 @@
 .layout-default {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+  font-family: "Poppins", sans-serif;
+  color: #333;
+
   &__header {
-    background: orange;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-  }
-  &__menu {
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
+    align-items: center;
+    padding: 10px 40px;
+    background: #7494ec;
+    color: #333;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .layout-default__logo {
+      width: 50px;
+      img {
+        border-radius: 50%;
+        width: 100%;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .layout-default__menu ul {
       display: flex;
+      gap: 20px;
       li {
-        margin-left: 20px;
-        position: relative;
-
+        display: inline-block;
         a {
-          color: #000;
-          text-decoration: none;
-
-          &.active {
-            color: #fff;
+          color: #333;
+          padding: 10px;
+          transition: 0.3s;
+          &:hover {
+            color: #dce6ff;
           }
         }
+      }
+    }
+    .layout-default__account a {
+      color: #fff;
+      transition: 0.3s;
+      &:hover {
+        color: #dce6ff;
       }
     }
   }
 
   &__main {
-    padding: 20px;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__footer {
-    background: orange;
     text-align: center;
     padding: 10px 20px;
-  }
-}
-
-.menu {
-  &__sub {
-    position: absolute;
-    top: 100%;
-    background: orangered;
-    right: 0;
-    display: none !important;
-    flex-direction: column;
-
-    li {
-      margin-left: 0 !important ;
-    }
-    a {
-      white-space: nowrap;
-      display: block;
-      padding: 4px 10px;
-    }
-  }
-  li:hover > &__sub {
-    display: flex !important;
+    background: #7494ec;
+    color: #fff;
+    font-size: 14px;
   }
 }

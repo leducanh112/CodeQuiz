@@ -1,3 +1,6 @@
+.result {
+  color: rgb(243, 74, 74);
+}
 .result__tag--true {
   color: green;
 }
