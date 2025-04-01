@@ -1,5 +1,5 @@
 // const API_DOMAIN = "http://localhost:3000/";
-const API_DOMAIN = "https://code-quiz-liard.vercel.app/";
+const API_DOMAIN = "https://database-for-code-quiz.onrender.com/";
 
 export const get = async (path) => {
   const response = await fetch(API_DOMAIN + path);
