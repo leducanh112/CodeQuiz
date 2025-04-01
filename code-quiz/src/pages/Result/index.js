@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAnswers } from "../../services/answersService";
 import { getListQuestion } from "../../services/questionService";
-import { Link } from "react-router-dom";
 import "./Result.css";
 
 function Result() {
@@ -23,7 +22,7 @@ function Result() {
         resultFinal.push({
           ...dataQuestions[i],
           ...dataAnswers.answers.find(
-            (item) => item.questionId == dataQuestions[i].id
+            (item) => item.questionId === dataQuestions[i].id
           ),
         });
       }
@@ -34,7 +33,7 @@ function Result() {
   }, []);
 
   let countTrue = dataResult.reduce(
-    (total, item) => total + (item.answer == item.correctAnswer ? 1 : 0),
+    (total, item) => total + (item.answer === item.correctAnswer ? 1 : 0),
     0
   );
   return (

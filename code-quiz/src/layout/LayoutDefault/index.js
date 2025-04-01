@@ -1,5 +1,5 @@
 import "./LayoutDefault.scss";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from "../../logo.png";
 function LayoutDefault() {
@@ -12,7 +12,7 @@ function LayoutDefault() {
         <header className="layout-default__header">
           <div className="layout-default__logo">
             <a href="/home">
-              <img src={logo}></img>
+              <img src={logo} alt="logo"></img>
             </a>
           </div>
           <div className="layout-default__menu">

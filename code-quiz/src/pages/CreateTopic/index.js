@@ -1,4 +1,4 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getTopic, deleteTopic } from "../../services/topicService";
@@ -8,7 +8,7 @@ import "./CreateTopic.css";
 
 function CreateTopic() {
   const params = useParams();
-  const { register, handleSubmit, setValue } = useForm();
+  const { handleSubmit } = useForm();
   const navigate = useNavigate();
   const [topic, setTopic] = useState();
   useEffect(() => {
@@ -40,7 +40,7 @@ function CreateTopic() {
       );
       const successCount = responses.filter(Boolean).length;
       console.log(successCount, questions.length);
-      if (successCount == questions.length) {
+      if (successCount === questions.length) {
         Swal.fire({
           title: "Success",
           icon: "success",
@@ -125,13 +125,21 @@ function CreateTopic() {
           },
         });
         const response = await deleteTopic(params.id);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Bạn đã xóa thành công",
-          icon: "success",
-        }).then(() => {
-          navigate("/topic");
-        });
+        if (response) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Bạn đã xóa thành công",
+            icon: "success",
+          }).then(() => {
+            navigate("/topic");
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Xóa thất bại, vui lòng thử lại!",
+            icon: "error",
+          });
+        }
       } catch (error) {
         Swal.fire({
           title: "Error!",

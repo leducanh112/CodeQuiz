@@ -98,23 +98,23 @@ function Login() {
                 <i className="bx bxs-lock-alt"></i>
               </div>
               <div className="forgot-link">
-                <a href="#">Forgot Password?</a>
+                <a href="/">Forgot Password?</a>
               </div>
               <button type="submit" className="btn">
                 Login
               </button>
               <p>or login with social platforms</p>
               <div className="social-icons">
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-google"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-facebook"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-github"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-linkedin"></i>
                 </a>
               </div>
@@ -141,16 +141,16 @@ function Login() {
               </button>
               <p>or register with social platforms</p>
               <div className="social-icons">
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-google"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-facebook"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-github"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="bx bxl-linkedin"></i>
                 </a>
               </div>

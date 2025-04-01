@@ -26,7 +26,7 @@ function Quiz() {
       const response = await getListQuestion(params.id);
       setDataQuestions(response);
     };
-    fetchApi();
+    fetchApi(params.id);
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
