@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div className="home">
-      <section className="hero">
+      <section data-aos="fade-up" className="hero">
         <div className="container">
           <h1>Challenge Yourself with Code Quiz</h1>
           <p>Test your skills in JavaScript, Python, React, and more!</p>
@@ -17,7 +17,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="features">
+      <section data-aos="fade-up" className="features">
         <div className="container">
           <div className="feature-item">
             <i className="bx bx-code-alt"></i>
@@ -37,7 +37,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="cta">
+      <section data-aos="fade-up" className="cta">
         <div className="container">
           <h2>Join Now and Test Your Knowledge</h2>
           <button className="btn outline" onClick={() => navigate("/login")}>

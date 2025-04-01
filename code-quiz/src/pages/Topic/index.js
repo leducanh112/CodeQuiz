@@ -44,14 +44,14 @@ function Topic() {
   return (
     <>
       <div className="topic-list">
-        <h2 className="topic-list__heading">Danh sách chủ đề</h2>
+        <h2 className="topic-list__heading">Topic List</h2>
         {topics.length > 0 && (
           <table className="topic-list__table">
             <thead>
               <tr>
                 <th className="topic-list__table-header">ID</th>
-                <th className="topic-list__table-header">Tên chủ đề</th>
-                <th className="topic-list__table-header">Chi Tiết</th>
+                <th className="topic-list__table-header">Topic Name</th>
+                <th className="topic-list__table-header">Link</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@ function Topic() {
                   <td className="topic-list__table-cell">{item.id}</td>
                   <td className="topic-list__table-cell">{item.name}</td>
                   <td className="topic-list__table-cell">
-                    <Link to={"/quiz/" + item.id}>Làm bài</Link>
+                    <Link to={"/quiz/" + item.id}>Take Quiz</Link>
                   </td>
                 </tr>
               ))}
@@ -68,10 +68,10 @@ function Topic() {
           </table>
         )}
         <button
-          className="topic-list__create-button"
+          className="btn-purple topic-list__create-button"
           onClick={handleCreateTopic}
         >
-          Tạo topic mới
+          Create New Topic
         </button>
       </div>
     </>

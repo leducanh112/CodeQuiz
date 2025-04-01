@@ -1,8 +1,9 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getTopic } from "../../services/topicService";
+import { getTopic, deleteTopic } from "../../services/topicService";
 import { createQuestion } from "../../services/questionService";
+import Swal from "sweetalert2";
 import "./CreateTopic.css";
 
 function CreateTopic() {
@@ -20,21 +21,45 @@ function CreateTopic() {
     fetchApi();
   }, []);
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([
+    { topicId: params.id, questions: "", answers: [""], correctAnswer: 0 },
+  ]);
 
   const onSubmit = async () => {
     console.log("Dữ liệu gửi lên:", { questions });
-
-    const responses = await Promise.all(
-      questions.map((question) => createQuestion(question))
-    );
-    const successCount = responses.filter(Boolean).length;
-    console.log(successCount, questions.length);
-    if (successCount == questions.length) {
-      alert("Success");
-      navigate("/topic");
-    } else {
-      alert("Fail!");
+    Swal.fire({
+      title: "Updating...",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    try {
+      const responses = await Promise.all(
+        questions.map((question) => createQuestion(question))
+      );
+      const successCount = responses.filter(Boolean).length;
+      console.log(successCount, questions.length);
+      if (successCount == questions.length) {
+        Swal.fire({
+          title: "Success",
+          icon: "success",
+        }).then(() => {
+          navigate("/topic");
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Update topic fail!",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Update topic fail!",
+        icon: "error",
+      });
     }
   };
 
@@ -80,30 +105,67 @@ function CreateTopic() {
     setQuestions(newQuestions);
   };
 
+  const handleDeleteTopic = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        Swal.fire({
+          title: "Deleting...",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+        const response = await deleteTopic(params.id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Bạn đã xóa thành công",
+          icon: "success",
+        }).then(() => {
+          navigate("/topic");
+        });
+      } catch (error) {
+        Swal.fire({
+          title: "Error!",
+          text: "Xóa thất bại, vui lòng thử lại!",
+          icon: "error",
+        });
+      }
+    }
+  };
+
   return (
     <div className="form-container">
-      <h2>Tạo Bộ Câu Hỏi</h2>
+      <h2>Create Topic</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Nhập tên chủ đề */}
         <div className="form-group">
-          <label>Tên Chủ Đề: {topic}</label>
+          <h3>Topic: {topic}</h3>
         </div>
 
         {/* Lặp qua từng câu hỏi */}
         {questions.map((q, qIndex) => (
           <div key={qIndex} className="question-container">
-            <label>Câu hỏi {qIndex + 1}:</label>
+            <label>Question {qIndex + 1}:</label>
             <input
               type="text"
-              placeholder="Nhập câu hỏi"
+              placeholder="Input question"
               value={q.questions}
+              required
               onChange={(e) =>
                 handleInputChange(qIndex, null, e.target.value, "questions")
               }
             />
 
             {/* Lặp qua các đáp án */}
-            <label>Đáp án:</label>
+            <label>Answers:</label>
             {q.answers.map((answer, aIndex) => (
               <div key={aIndex} className="answer-group">
                 <input
@@ -118,8 +180,9 @@ function CreateTopic() {
                 />
                 <input
                   type="text"
-                  placeholder={`Đáp án ${aIndex + 1}`}
+                  placeholder={`Answer ${aIndex + 1}`}
                   value={answer}
+                  required
                   onChange={(e) =>
                     handleInputChange(qIndex, aIndex, e.target.value, "answer")
                   }
@@ -142,7 +205,7 @@ function CreateTopic() {
               className="btn-add"
               onClick={() => addAnswer(qIndex)}
             >
-              + Thêm Đáp Án
+              + Add Answer
             </button>
 
             {/* Nút xóa câu hỏi */}
@@ -152,7 +215,7 @@ function CreateTopic() {
                 className="btn-delete-question"
                 onClick={() => removeQuestion(qIndex)}
               >
-                Xóa Câu Hỏi
+                Delete Question
               </button>
             )}
           </div>
@@ -160,14 +223,18 @@ function CreateTopic() {
 
         {/* Nút thêm câu hỏi */}
         <button type="button" className="btn-add" onClick={addQuestion}>
-          + Thêm Câu Hỏi
+          + Add Question
         </button>
-
-        {/* Nút lưu bộ câu hỏi */}
-        <button type="submit" className="btn-submit">
-          Lưu Bộ Câu Hỏi
-        </button>
-        <button className="btn-delete-question">Xóa Bộ Câu Hỏi</button>
+        <div className="button-group">
+          {/* Nút lưu bộ câu hỏi */}
+          <button type="submit" className="btn-purple">
+            Save
+          </button>
+          {/* Nút xóa bộ câu hỏi */}
+          <button type="button" className="btn-red" onClick={handleDeleteTopic}>
+            Delete Topic
+          </button>
+        </div>
       </form>
     </div>
   );

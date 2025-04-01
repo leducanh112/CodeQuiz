@@ -1,4 +1,4 @@
-import { get, post } from "../utils/request";
+import { get, post, del } from "../utils/request";
 
 export const getListTopic = async () => {
   const result = await get(`topics`);
@@ -12,5 +12,10 @@ export const getTopic = async (id) => {
 
 export const createTopic = async (options) => {
   const result = await post(`topics`, options);
+  return result;
+};
+
+export const deleteTopic = async (id) => {
+  const result = await del(`topics/${id}`);
   return result;
 };

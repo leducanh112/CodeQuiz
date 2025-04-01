@@ -40,21 +40,25 @@ function Result() {
   return (
     <>
       <div className="quiz-page">
-        <h1>
+        <h2>
           Kết quả {` `}
           <span className="result">
             {countTrue}/{dataResult.length}
           </span>
-        </h1>
-        <div className="result__list">
+        </h2>
+        <div className="form-quiz result__list">
           {dataResult.map((item, index) => (
             <div className="form-quiz__item result__item" key={item.id}>
-              <p className="form-quiz__question">
+              <p className="form-quiz__question result__question">
                 Câu {index + 1}: {item.questions}
                 {item.correctAnswer === item.answer ? (
-                  <span className="result__tag result__tag--true">Đúng</span>
+                  <span className="result__tag result__tag--true">
+                    <i class="bx bx-check"></i>
+                  </span>
                 ) : (
-                  <span className="result__tag result__tag--false">Sai</span>
+                  <span className="result__tag result__tag--false">
+                    <i class="bx bx-x"></i>
+                  </span>
                 )}
               </p>
               {item.answers.map((itemAns, indexAns) => {
@@ -69,7 +73,10 @@ function Result() {
                 }
 
                 return (
-                  <div className="result__answer" key={indexAns}>
+                  <div
+                    className="form-quiz__answer result__answer"
+                    key={indexAns}
+                  >
                     <input type="radio" checked={checked} disabled></input>
                     <label className={className}>{itemAns}</label>
                   </div>
@@ -78,14 +85,16 @@ function Result() {
             </div>
           ))}
         </div>
-        {dataResult[0] && (
-          <button
-            className="form-quiz__submit-btn"
-            onClick={() => navigate(`/quiz/${dataResult[0].topicId}`)}
-          >
-            Làm lại bài này
-          </button>
-        )}
+        <div className="button-group">
+          {dataResult[0] && (
+            <button
+              className="btn-purple"
+              onClick={() => navigate(`/quiz/${dataResult[0].topicId}`)}
+            >
+              Làm lại bài này
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

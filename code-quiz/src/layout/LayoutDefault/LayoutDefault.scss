@@ -1,20 +1,45 @@
+:root {
+  --black: #212121;
+  --purple: #5d2057;
+  --white: white;
+  --text--dark-primary: #090909;
+  --orchid-purple: #8854c0;
+  --text--purple: #6a3da5;
+  --surface-states--action-hover: #ae7dd9;
+
+  --text--light-primary: white;
+  --lilac-100: #f6f0ff;
+  --background--dark-primary: #090909;
+  --surface--action: #8854c0;
+  --lilac-100: #f6f0ff;
+  --surface-states--action-faded-hover: #efe5ff;
+}
+
 .layout-default {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
-  font-family: "Poppins", sans-serif;
-  color: #333;
+  background: #f9f9f9;
+  // background: linear-gradient(
+  //   90deg,
+  //   var(--surface--action-faded),
+  //   var(--lilac-100)
+  // );
+  // background: linear-gradient(90deg, #c5bbd3, #bea9ce 50%, #c5bbd3);
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
-    background: #7494ec;
-    color: #333;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    // background: #7494ec;
+    background: var(--text--light-primary);
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 
     .layout-default__logo {
       width: 50px;
@@ -31,11 +56,14 @@
       li {
         display: inline-block;
         a {
-          color: #333;
-          padding: 10px;
+          border-radius: 8px;
+          color: #222;
+          padding: 10px 12px;
           transition: 0.3s;
           &:hover {
-            color: #dce6ff;
+            // color: #dce6ff;
+            color: var(--orchid-purple);
+            background-color: var(--lilac-100);
           }
         }
       }
@@ -43,8 +71,14 @@
     .layout-default__account a {
       color: #fff;
       transition: 0.3s;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid var(--surface--action);
+      background-color: var(--orchid-purple);
       &:hover {
-        color: #dce6ff;
+        // color: #dce6ff;
+        background-color: var(--surface-states--action-hover);
+        border-color: var(--surface-states--action-hover);
       }
     }
   }
@@ -60,8 +94,10 @@
   &__footer {
     text-align: center;
     padding: 10px 20px;
-    background: #7494ec;
-    color: #fff;
+    // background: #7494ec;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: var(--white);
+    color: #222;
     font-size: 14px;
   }
 }

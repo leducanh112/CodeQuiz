@@ -1,18 +1,22 @@
 .topic-list {
-  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 40px;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid #ddd;
 
   &__heading {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #1e3a8a;
+    color: var(--text--dark-primary);
   }
 
   &__table {
     width: 100%;
+    min-width: 767px;
     border-collapse: collapse;
     margin-bottom: 20px;
   }
@@ -21,7 +25,8 @@
     background-color: #f3f4f6;
     padding: 12px;
     text-align: left;
-    font-size: 16px;
+    text-transform: capitalize;
+    font-size: 24px;
     font-weight: 600;
     color: #4b5563;
   }
@@ -31,40 +36,64 @@
   }
 
   &__table-row:hover {
-    background-color: #f1f5f9;
+    background-color: var(--lilac-100);
   }
 
   &__table-cell {
     padding: 12px;
     text-align: left;
-    font-size: 14px;
+    font-size: 18px;
     border: 1px solid #e5e7eb;
   }
+}
+.btn-purple {
+  background: var(--orchid-purple);
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px #6c4298;
 
-  &__link {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-
-    &:hover {
-      color: #1e40af;
-    }
+  &:hover {
+    transform: translateY(6px);
+    box-shadow: 0 0 #6c4298;
   }
+}
+.btn-green {
+  background: #4caf50;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px #2e7d32;
 
-  &__create-button {
-    background-color: #1e40af;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  &:hover {
+    transform: translateY(6px);
+    box-shadow: 0 0 #2e7d32;
+  }
+}
+.btn-red {
+  background: #f44336;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px #c62828;
 
-    &:hover {
-      background-color: #3b82f6;
-    }
+  &:hover {
+    transform: translateY(6px);
+    box-shadow: 0 0 #c62828;
   }
 }

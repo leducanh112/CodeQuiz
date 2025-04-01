@@ -32,9 +32,9 @@ function Login() {
       navigate("/");
     } else {
       Swal.fire({
-        title: "Sai tài khoản hoặc mật khẩu",
+        title: "Incorrect email or password",
         icon: "error",
-        confirmButtonText: "Thử lại",
+        confirmButtonText: "Try again",
       });
     }
   };
@@ -50,7 +50,11 @@ function Login() {
     const checkExistEmail = await checkExist("email", email);
     console.log(checkExistEmail);
     if (checkExistEmail.length > 0) {
-      alert("Email đã tồn tại");
+      Swal.fire({
+        icon: "warning",
+        title: "Email already exists!",
+        text: "Please use a different email.",
+      });
     } else {
       const options = {
         fullName: fullName,
@@ -61,8 +65,7 @@ function Login() {
       const response = await register(options);
       if (response) {
         Swal.fire({
-          title: "Đăng ký thành công!",
-
+          title: "Registration successful!",
           icon: "success",
           confirmButtonText: "OK",
         }).then(() => {
@@ -70,10 +73,10 @@ function Login() {
         });
       } else {
         Swal.fire({
-          title: "Đăng ký thất bại!",
-          text: "Email đã tồn tại hoặc có lỗi xảy ra.",
+          title: "Registration failed!",
+          text: "Email already exists or an error occurred.",
           icon: "error",
-          confirmButtonText: "Thử lại",
+          confirmButtonText: "Try again",
         });
       }
     }
@@ -81,7 +84,7 @@ function Login() {
   //End Register
   return (
     <>
-      <div className="login">
+      <div data-aos="fade-up" className="login">
         <div className={`container ${active ? " active" : ""}`}>
           <div className="form-box login">
             <form action="#" onSubmit={handleLogin}>

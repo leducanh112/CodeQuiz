@@ -1,6 +1,22 @@
 .result {
   color: rgb(243, 74, 74);
 }
+
+.quiz-page h2 {
+  margin-bottom: 10px;
+}
+.result__tag {
+  margin-left: 10px;
+  font-weight: 600;
+}
+.result__tag i {
+  font-size: 30px;
+}
+.result__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .result__tag--true {
   color: green;
 }

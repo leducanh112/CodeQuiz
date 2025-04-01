@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "code-quiz/package.json",
+      "use": "@vercel/react"
+    },
+    {
+      "src": "database/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/database/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/code-quiz/$1"
+    }
+  ]
+}

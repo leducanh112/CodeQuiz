@@ -59,14 +59,14 @@ function Quiz() {
     <>
       <div className="quiz-page">
         <h2 className="quiz-page__heading">
-          Bài Quiz chủ đề: {dataTopic && <>{dataTopic.name}</>}
+          Topic name: {dataTopic && <>{dataTopic.name}</>}
         </h2>
         <div className="form-quiz">
           <form onSubmit={handleSubmit}>
             {dataQuestions.map((item, index) => (
               <div className="form-quiz__item" key={item.id}>
                 <p className="form-quiz__question">
-                  Câu {index + 1}: {item.questions}
+                  Question {index + 1}: {item.questions}
                 </p>
                 {item.answers.map((itemAns, indexAns) => (
                   <div className="form-quiz__answer" key={indexAns}>
@@ -83,9 +83,14 @@ function Quiz() {
                 ))}
               </div>
             ))}
-            <button type="Submit" className="form-quiz__submit-btn">
-              Submit
-            </button>
+            <div className="button-group">
+              <button
+                type="Submit"
+                className="btn-purple form-quiz__submit-btn"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

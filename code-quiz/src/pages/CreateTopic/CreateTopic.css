@@ -1,19 +1,21 @@
 .form-container {
-  max-width: 600px;
+  min-width: 767px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 20px 40px;
   background: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Tiêu đề */
 h2 {
   text-align: center;
-  color: #333;
+  font-size: 32px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 24px;
 }
 
-/* Nhóm form */
 .form-group {
   margin-bottom: 15px;
 }
@@ -22,9 +24,9 @@ label {
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
+  font-size: 18px;
 }
 
-/* Input */
 input {
   width: 100%;
   padding: 8px;
@@ -32,7 +34,6 @@ input {
   border-radius: 5px;
 }
 
-/* Câu hỏi */
 .question-container {
   padding: 15px;
   background: #fff;
@@ -41,24 +42,23 @@ input {
   margin-bottom: 15px;
 }
 
-/* Đáp án */
 .answer-group {
   display: flex;
-  align-items: center;
   gap: 10px;
   margin-bottom: 10px;
 }
 
 .answer-group input[type="radio"] {
+  flex: 1;
   cursor: pointer;
 }
 
-/* Nút */
 button {
   padding: 8px 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .btn-add {
@@ -79,15 +79,21 @@ button {
   margin-top: 10px;
 }
 
-.btn-submit {
-  width: 100%;
-  background: #007bff;
-  color: white;
-  font-size: 16px;
-  margin-top: 15px;
-}
-
-/* Hiệu ứng hover */
 button:hover {
   opacity: 0.9;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 767.98px) {
+  .form-container {
+    min-width: 0;
+  }
+  .button-group {
+    flex-direction: column;
+  }
 }

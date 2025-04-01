@@ -23,18 +23,18 @@ function Answers() {
     };
     fetchApi();
   }, []);
-  console.log(dataAnswers);
+  console.log("dataanswer", dataAnswers);
   return (
     <>
       <div className="topic-list">
-        <h2 className="topic-list__heading">Danh sách bài đã luyện tập</h2>
+        <h2 className="topic-list__heading">Practiced Quiz List</h2>
         {dataAnswers.length > 0 && (
           <table className="topic-list__table">
             <thead>
               <tr>
                 <th className="topic-list__table-header">ID</th>
-                <th className="topic-list__table-header">Tên chủ đề</th>
-                <th className="topic-list__table-header">Chi tiết</th>
+                <th className="topic-list__table-header">Topic Name</th>
+                <th className="topic-list__table-header">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@ function Answers() {
                   <td className="topic-list__table-cell">{item.id}</td>
                   <td className="topic-list__table-cell">{item.name}</td>
                   <td className="topic-list__table-cell">
-                    <Link to={"/result/" + item.id}>Xem chi tiết</Link>
+                    <Link to={"/result/" + item.id}>View Details</Link>
                   </td>
                 </tr>
               ))}
