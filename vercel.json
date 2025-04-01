@@ -2,23 +2,9 @@
   "version": 2,
   "builds": [
     {
-      "src": "code-quiz/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "build" }
-    },
-    {
-      "src": "database/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/database/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/code-quiz/build/$1"
     }
   ]
 }
