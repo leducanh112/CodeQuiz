@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div className="home">
-      <section data-aos="fade-up" className="hero">
+      <section data-aos="fade-down" className="hero">
         <div className="container">
           <h1>Challenge Yourself with Code Quiz</h1>
           <p>Test your skills in JavaScript, Python, React, and more!</p>
@@ -17,7 +17,7 @@ function Home() {
         </div>
       </section>
 
-      <section data-aos="fade-up" className="features">
+      <section data-aos="zoom-in" className="features">
         <div className="container">
           <div className="feature-item">
             <i className="bx bx-code-alt"></i>
