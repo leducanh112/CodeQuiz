@@ -2,9 +2,13 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getTopic, deleteTopic } from "../../services/topicService";
-import { createQuestion } from "../../services/questionService";
+import {
+  createQuestion,
+  editQuestion,
+  getListQuestion,
+} from "../../services/questionService";
 import Swal from "sweetalert2";
-import "./CreateTopic.css";
+import "../CreateTopic/CreateTopic.css";
 
 function EditTopic() {
   const params = useParams();
@@ -24,6 +28,15 @@ function EditTopic() {
   const [questions, setQuestions] = useState([
     { topicId: params.id, questions: "", answers: [""], correctAnswer: 0 },
   ]);
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getListQuestion(params.id);
+      if (response) {
+        setQuestions(response);
+      }
+    };
+    fetchApi();
+  }, []);
 
   const onSubmit = async () => {
     console.log("Dữ liệu gửi lên:", { questions });
@@ -35,8 +48,15 @@ function EditTopic() {
       },
     });
     try {
+      console.log(questions);
       const responses = await Promise.all(
-        questions.map((question) => createQuestion(question))
+        questions.map(async (question) => {
+          if (question.id) {
+            return await editQuestion(question.id, question);
+          } else {
+            return await createQuestion(question);
+          }
+        })
       );
       const successCount = responses.filter(Boolean).length;
       console.log(successCount, questions.length);
@@ -152,7 +172,7 @@ function EditTopic() {
 
   return (
     <div className="form-container">
-      <h2>Create Topic</h2>
+      <h2>Edit Topic</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <h3>Topic: {topic}</h3>

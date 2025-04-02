@@ -51,6 +51,7 @@ function Topic() {
               <tr>
                 <th className="topic-list__table-header">ID</th>
                 <th className="topic-list__table-header">Topic Name</th>
+                <th className="topic-list__table-header">Edit</th>
                 <th className="topic-list__table-header">Link</th>
               </tr>
             </thead>
@@ -59,6 +60,11 @@ function Topic() {
                 <tr key={item.id} className="topic-list__table-row">
                   <td className="topic-list__table-cell">{item.id}</td>
                   <td className="topic-list__table-cell">{item.name}</td>
+                  <td className="topic-list__table-cell">
+                    <Link to={"/edit-topic/" + item.id}>
+                      <i class="bx bx-edit"></i>
+                    </Link>
+                  </td>
                   <td className="topic-list__table-cell">
                     <Link to={"/quiz/" + item.id}>Take Quiz</Link>
                   </td>

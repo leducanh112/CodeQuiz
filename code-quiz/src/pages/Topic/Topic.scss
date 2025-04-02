@@ -44,6 +44,11 @@
     text-align: left;
     font-size: 18px;
     border: 1px solid #e5e7eb;
+
+    i {
+      font-size: 24px;
+      color: var(--text--dark-primary);
+    }
   }
 }
 .btn-purple {

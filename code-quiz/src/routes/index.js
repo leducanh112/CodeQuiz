@@ -8,6 +8,7 @@ import Topic from "../pages/Topic";
 import PrivateRoutes from "../components/PrivateRoutes";
 import Logout from "../pages/Logout";
 import CreateTopic from "../pages/CreateTopic";
+import EditTopic from "../pages/EditTopic";
 
 export const routes = [
   {
@@ -49,6 +50,10 @@ export const routes = [
           {
             path: "topic",
             element: <Topic></Topic>,
+          },
+          {
+            path: "edit-topic/:id",
+            element: <EditTopic></EditTopic>,
           },
           {
             path: "create-topic/:id",
