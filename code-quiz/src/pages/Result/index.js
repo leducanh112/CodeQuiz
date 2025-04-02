@@ -90,9 +90,12 @@ function Result() {
               className="btn-purple"
               onClick={() => navigate(`/quiz/${dataResult[0].topicId}`)}
             >
-              Làm lại bài này
+              Retake Quiz
             </button>
           )}
+          <button className="btn-gray" onClick={() => navigate(`/answers`)}>
+            Back to Anwers
+          </button>
         </div>
       </div>
     </>
