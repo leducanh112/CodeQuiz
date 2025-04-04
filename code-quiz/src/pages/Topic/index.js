@@ -19,15 +19,15 @@ function Topic() {
 
   const handleCreateTopic = () => {
     Swal.fire({
-      title: "Nhập Tên Chủ Đề",
+      title: "Topic Name",
       input: "text",
-      inputPlaceholder: "Nhập tên chủ đề...",
+      inputPlaceholder: "Enter topic name...",
       showCancelButton: true,
-      confirmButtonText: "Tạo",
-      cancelButtonText: "Hủy",
+      confirmButtonText: "Create",
+      cancelButtonText: "Cancel",
       inputValidator: (value) => {
         if (!value) {
-          return "Vui lòng nhập tên chủ đề!";
+          return "Please enter a topic name!";
         }
       },
     }).then(async (result) => {
